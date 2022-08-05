@@ -1,0 +1,11 @@
+FROM golang
+ARG KAFKA_HOST
+ARG CONSUMER_GROUP
+ARG INJESTION_TYPE
+ARG INVOICE_TO_PROCESS_TOPIC
+ARG INVOICE_PROCESSED_TOPIC
+WORKDIR /go/delivery
+COPY . .
+RUN go mod download
+RUN go build -o /processor
+CMD [ "/processor" ]

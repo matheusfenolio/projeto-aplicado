@@ -1,0 +1,9 @@
+FROM golang
+ARG KAFKA_HOST
+ARG INVOICE_TO_PROCESS_TOPIC
+WORKDIR /go/delivery
+COPY . .
+RUN go mod download
+RUN go build -o /api
+EXPOSE 8080
+CMD [ "/api" ]
